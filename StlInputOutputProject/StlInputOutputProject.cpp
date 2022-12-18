@@ -1,9 +1,14 @@
-﻿#include <iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
 #include <fstream>
 
 
 int main()
 {
+    std::ofstream wfile;
+    std::ifstream rfile;
+
     std::fstream file;
 
     /*file.open("file.txt", std::ios::out);
@@ -15,7 +20,7 @@ int main()
     file << "Hello people";
     file.close();*/
 
-    file.open("file.txt", std::ios::in);
+    //file.open("file.txt", std::ios::in);
     
     /*std::string sout(10, ' ');
     file.read(&sout[0], 10);
@@ -26,18 +31,39 @@ int main()
     file >> sout2;
     std::cout << sout2 << "\n";*/
 
-    while (!file.eof())
-    {
-        std::string buffer(1024, ' ');
-        file.getline(&buffer[0], 1024);
-        buffer.resize(file.gcount());
-        std::cout << buffer << "\n";
-        /*file >> buffer;
-        std::cout << buffer;
-        if (buffer == "\n")
-            std::cout << "\n";*/
-    }
+    //while (!file.eof())
+    //{
+    //    std::string buffer(1024, '\0');
+    //    file.getline(&buffer[0], 1024);
+    //    //buffer.resize(file.gcount());
+    //    std::cout << buffer << "\n";
 
-    file.close();
+    //    /*file >> buffer;
+    //    std::cout << buffer;*/
+    //    /*if (buffer == "\n")
+    //        std::cout << "\n";*/
+    //}
+
+    /*file.open("file.dat", std::ios::out | std::ios::binary);
+    int n{ 100 };
+
+    file << n;
+
+    file.close();*/
+
+    /*FILE* cfile;
+    cfile = fopen("file02.dat", "w");
+    int n{ 100 };
+
+    fwrite(&n, sizeof(n), 1, cfile);
+    fclose(cfile);*/
+
+    file.open("file02.dat", std::ios::in | std::ios::binary);
+
+    int n;
+    file >> n;
+
+    std::cout << n << "\n";
+
     return 0;
 }
